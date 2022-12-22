@@ -28,13 +28,13 @@ namespace CleanArchMvc.Infra.IoC
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    //Valores validos
+                    //valores validos
                     ValidIssuer = configuration["Jwt:Issuer"],
-                    ValidAudience = configuration["Jwt:Aundience"],
+                    ValidAudience = configuration["Jwt:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"])),
-                    ClockSkew = TimeSpan.Zero
-                        
+                         Encoding.UTF8.GetBytes(configuration["Jwt:SecreteKey"])),
+                    ClockSkew = TimeSpan.Zero                 
+
                 };
             });
             return services;

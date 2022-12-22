@@ -1,5 +1,6 @@
 ﻿using CleanArcgMvc.API.Models;
 using CleanArchMvc.Domain.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,7 @@ namespace CleanArcgMvc.API.Controllers
 
         [HttpPost("CreateUser")]
         [ApiExplorerSettings(IgnoreApi = true)]
+        [Authorize]
         public async Task<ActionResult> CreateUser([FromBody] LoginModel userInfo)
         {
             var result = await _authentication.RegisterUser(userInfo.Email, userInfo.Password);
@@ -46,6 +48,7 @@ namespace CleanArcgMvc.API.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("LoginUser")]
         public async Task<ActionResult<UserToken>> Login([FromBody] LoginModel userInfo)
         {
